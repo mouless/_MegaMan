@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\CameraFollowingPlayer.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\PlayerControllerScripts.cs" />
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\Shooting.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
