@@ -28,6 +28,8 @@ public class PlayerControllerScripts : MonoBehaviour
         Body = GetComponent<Rigidbody2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
     }
+
+    // Updated once every frame
     private void Update()
     {
         CheckForJump();
@@ -50,16 +52,7 @@ public class PlayerControllerScripts : MonoBehaviour
             CheckForShot();
 
         }
-    }
 
-
-    // Update is called at the same time as the physics engine
-    void FixedUpdate()
-    {
-
-        // Make sure that the character is facing the way he's moving
-
-        //If the character is falling, animate the falling sprites
         if (myRigidbody.velocity.y < 0)
         {
             anim.SetBool("HasLanded", false);
@@ -69,7 +62,12 @@ public class PlayerControllerScripts : MonoBehaviour
         {
             anim.ResetTrigger("Falling");
         }
+    }
 
+
+    // Update is called at the same time as the physics engine
+    void FixedUpdate()
+    {
 
     }
 
@@ -98,10 +96,28 @@ public class PlayerControllerScripts : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                // FIRE EVERYTHING!!!
-                Debug.Log("FIRE EVERYTHING!!!");
-                //Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
-                anim.SetTrigger("Idle_Shoot");
+                anim.ResetTrigger("Falling_Shoot");
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Idle"))
+                {
+                    Debug.Log("IDLE Shoot");
+                    //Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+                    anim.SetTrigger("Idle_Shoot");
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Jump"))
+                {
+                    Debug.Log("JUMPING Shoot");
+                    anim.SetTrigger("Jumping_Shoot");
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Falling"))
+                {
+                    Debug.Log("FALLING Shoot");
+                    anim.SetTrigger("Falling_Shoot");
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Run"))
+                {
+                    Debug.Log("RUNNING Shoot");
+                    anim.SetTrigger("Run_Shoot");
+                }
             }
         }
     }
