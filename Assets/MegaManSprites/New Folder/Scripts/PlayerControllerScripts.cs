@@ -9,7 +9,8 @@ public class PlayerControllerScripts : MonoBehaviour
     public float damage = 1;
     public LayerMask NotToHit;
     public GameObject bullet;
-    public Vector2 offset = new Vector2(0.4f, 0.4f);
+    public Vector2 offset = new Vector2(0.4f, 0.0f);
+    public Vector2 velocity;
 
     bool grounded = false;
     public Transform groundCheck;
@@ -52,13 +53,12 @@ public class PlayerControllerScripts : MonoBehaviour
         if (fireRate == 0)
         {
             CheckForShot();
-
         }
     }
 
     private void CheckForJump()
     {
-        if (grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if (grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             Jump();
         }
@@ -91,38 +91,49 @@ public class PlayerControllerScripts : MonoBehaviour
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Idle"))
                 {
+                    PlayerShoot();
                     Debug.Log("IDLE Shoot");
-                    //Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
                     anim.SetTrigger("Idle_Shoot");
                 }
                 else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Jump&Fall"))
                 {
+                    PlayerShoot();
                     anim.SetTrigger("Jumping_Shoot");
                     anim.Play("Player_Shoot_In_Air");
                     Debug.Log("JUMPING Shoot");
                 }
                 else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Run"))
                 {
+                    PlayerShoot();
                     Debug.Log("RUNNING Shoot");
                     anim.SetTrigger("Run_Shoot");
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Nudge"))
+                {
+                    PlayerShoot();
+                    Debug.Log("NUDGE Shoot");
+                    anim.SetTrigger("Idle_Shoot");
                 }
             }
         }
     }
 
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Ground")
-    //    {
-    //        JumpCount = MaxJumps;
-    //    }
-    //}
+    private void PlayerShoot()
+    {
+        if (facingRight)
+        {
+            GameObject theBullet = Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+            theBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * transform.localScale.x, velocity.y);
+        }
+        if (!facingRight)
+        {
+            GameObject theBullet = Instantiate(bullet, (Vector2)transform.position + offset * -transform.localScale.x, Quaternion.identity);
+            theBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-velocity.x * transform.localScale.x, velocity.y);
+        }
+    }
 
     void Jump()
     {
         myRigidbody.AddForce(new Vector2(0, jumpForce));
-        //anim.SetTrigger("Jump");
-        //JumpCount -= 1;
     }
 }

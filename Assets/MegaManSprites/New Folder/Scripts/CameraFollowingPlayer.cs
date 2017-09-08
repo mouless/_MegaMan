@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollowingPlayer : MonoBehaviour
 {
     public Transform player;
-    public float deadCameraZone = 2.5f;
+    public float deadCameraZoneXaxis = 2.5f;
     public float cameraXpos;
 
     // Use this for initialization
@@ -17,13 +17,13 @@ public class CameraFollowingPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.position.x > cameraXpos + deadCameraZone)
+        if (player.position.x > cameraXpos + deadCameraZoneXaxis)
         {
-            transform.position = new Vector3(player.position.x - deadCameraZone, transform.position.y, transform.position.z);
+            transform.position = new Vector3(player.position.x - deadCameraZoneXaxis, transform.position.y, transform.position.z);
         }
-        if (player.position.x < cameraXpos - deadCameraZone)
+        if (player.position.x < cameraXpos - deadCameraZoneXaxis)
         {
-            transform.position = new Vector3(player.position.x + deadCameraZone, transform.position.y, transform.position.z);
+            transform.position = new Vector3(player.position.x + deadCameraZoneXaxis, transform.position.y, transform.position.z);
         }
         cameraXpos = transform.position.x;
     }

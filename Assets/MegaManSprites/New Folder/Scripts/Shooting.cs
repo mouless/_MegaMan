@@ -10,25 +10,41 @@ public class Shooting : MonoBehaviour
     public float damage = 1;
     public LayerMask NotToHit;
     public GameObject bullet;
-    public Vector2 offset = new Vector2(0.4f, 0.4f);
-    //public int canShoot = 3;
+    public Vector2 offset = new Vector2(0.1f, 0.01f);
+    public Vector2 offsetNeg = new Vector2(0.1f, -0.01f);
+    public Vector2 velocity;
 
-    Transform firePoint;
+    public float maxSpeed = 10f;
+    public float jumpForce = 450f;
+    public bool facingRight = true;
+    public Rigidbody2D Body;
 
     // Use this for initialization
     void Start()
     {
+        Body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        float move = Input.GetAxis("Horizontal");
+        Body.velocity = new Vector2(move * maxSpeed, Body.velocity.y);
+
+        anim.SetFloat("Speed", Mathf.Abs(move));
+        if (move > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (move < 0 && facingRight)
+        {
+            Flip();
+        }
+
         if (fireRate == 0)
         {
             CheckForShot();
-
         }
     }
 
@@ -38,12 +54,65 @@ public class Shooting : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                // FIRE EVERYTHING!!!
-                Debug.Log("FIRE EVERYTHING!!!");
-                //Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
-                anim.SetBool("Idle_Shoot", false);
-
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Idle"))
+                {
+                    PlayerShoot();
+                    Debug.Log("IDLE Shoot");
+                    anim.SetTrigger("Idle_Shoot");
+                }
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Idle_Shoot"))
+                {
+                    PlayerShoot();
+                    Debug.Log("IDLE Shoot");
+                    anim.SetTrigger("Idle_Shoot");
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Jump&Fall"))
+                {
+                    PlayerShoot();
+                    Debug.Log("JUMPING Shoot");
+                    anim.SetTrigger("Jumping_Shoot");
+                    anim.Play("Player_Shoot_In_Air");
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Run"))
+                {
+                    PlayerShoot();
+                    Debug.Log("RUNNING Shoot");
+                    anim.SetTrigger("Run_Shoot");
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Run_Shoot"))
+                {
+                    PlayerShoot();
+                    Debug.Log("RUNNING Shoot");
+                    anim.SetTrigger("Run_Shoot");
+                }
+                else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Nudge"))
+                {
+                    PlayerShoot();
+                    Debug.Log("NUDGE Shoot");
+                    anim.SetTrigger("Idle_Shoot");
+                }
             }
         }
+    }
+
+    private void PlayerShoot()
+    {
+        if (facingRight)
+        {
+            GameObject theBullet = Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+            theBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * transform.localScale.x, velocity.y);
+        }
+        else
+        {
+            GameObject theBullet = Instantiate(bullet, (Vector2)transform.position + offsetNeg * -transform.localScale.x, Quaternion.identity);
+            theBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-velocity.x * transform.localScale.x, velocity.y);
+        }
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        SpriteRenderer flipX = GetComponent<SpriteRenderer>();
+        flipX.flipX = !facingRight;
     }
 }
