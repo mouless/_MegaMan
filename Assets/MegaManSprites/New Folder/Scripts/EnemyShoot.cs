@@ -37,7 +37,8 @@ public class EnemyShoot : MonoBehaviour {
     {
         if (collision.tag == "Player")
         {
-            CharacterHealth.HurtPlayer(damageToGive);
+            gameObject.GetComponent<CharacterHealth>().HurtPlayer(6f);
+            Debug.Log("Taking DAMAGE!!!");
         }
     }
 }
