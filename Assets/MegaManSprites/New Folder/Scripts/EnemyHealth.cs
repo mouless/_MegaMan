@@ -21,11 +21,11 @@ public class EnemyHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            DealDamage(6.66f);
+            HurtEnemy(6.66f);
         }
     }
 
-    public void DealDamage(float damageTaken)
+    public void HurtEnemy(float damageTaken)
     {
         currentEnemyHealth -= damageTaken;
 
@@ -33,7 +33,6 @@ public class EnemyHealth : MonoBehaviour
         {
             EnemyDeath();
         }
-
         PlaySound();
     }
 

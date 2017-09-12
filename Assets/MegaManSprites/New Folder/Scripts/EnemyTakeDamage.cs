@@ -24,7 +24,7 @@ public class EnemyTakeDamage : MonoBehaviour
         else if (collision.gameObject.tag == "Bullet")
         {
             Destroy(collision.gameObject);
-            gameObject.GetComponent<EnemyHealth>().DealDamage(6f);
+            gameObject.GetComponent<EnemyHealth>().HurtEnemy(6f);
         }
 
     }

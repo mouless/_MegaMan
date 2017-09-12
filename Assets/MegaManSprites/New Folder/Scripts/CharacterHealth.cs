@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class CharacterHealth : MonoBehaviour
 {
-    public float currentHealth;
+    static public float currentHealth;
     public float maxHealth;
 
-    public Slider healthbar;
+    static public Slider healthbar;
 
     // Use this for initialization
     void Start()
@@ -24,11 +24,11 @@ public class CharacterHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            DealDamage(6.66f);
+            HurtPlayer(6.66f);
         }
     }
 
-    private void DealDamage(float damageTaken)
+    static public void HurtPlayer(float damageTaken)
     {
         currentHealth -= damageTaken;
 
@@ -40,13 +40,13 @@ public class CharacterHealth : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void PlayerDeath()
+    static private void PlayerDeath()
     {
         currentHealth = 0;
         Debug.Log("YOU'RE DEAD!!!");
     }
 
-    private void UpdateHealthBar()
+    static private void UpdateHealthBar()
     {
         healthbar.value = currentHealth / 100;
     }
