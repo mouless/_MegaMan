@@ -8,7 +8,7 @@ public class BulletWithBullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            collision.rigidbody.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            collision.rigidbody.GetComponent<Rigidbody2D>().gravityScale = 2f;
         }
         else
         {

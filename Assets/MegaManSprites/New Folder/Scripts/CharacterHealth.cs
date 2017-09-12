@@ -24,7 +24,7 @@ public class CharacterHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            DealDamage(10);
+            DealDamage(6.66f);
         }
     }
 

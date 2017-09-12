@@ -83,10 +83,14 @@
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\CharacterHealth.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\DestroyByBoundary.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\DestroyByContact.cs" />
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\EnemyHealth.cs" />
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\EnemyTakeDamage.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\LadderZone.cs" />
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\Perishables.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\PlayerControllerScripts.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\PlayerControllerScripts_Update.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\Shooting.cs" />
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\TakingDamagePlayer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
