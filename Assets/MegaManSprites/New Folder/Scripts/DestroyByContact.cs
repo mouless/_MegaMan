@@ -6,11 +6,17 @@ public class DestroyByContact : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Boundary" || collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Boundary" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet")
         {
+            if (collision.gameObject.tag == "Bullet")
+            {
+                collision.rigidbody.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            }
             return;
         }
-        Destroy(collision.gameObject);
-
+        else
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

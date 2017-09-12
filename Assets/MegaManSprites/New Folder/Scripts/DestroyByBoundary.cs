@@ -9,7 +9,7 @@ public class DestroyByBoundary : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         Destroy(collision.gameObject);
-        Debug.Log("Destroy");
+        Debug.Log("Destroy bullet");
     }
     
     private void Update()
