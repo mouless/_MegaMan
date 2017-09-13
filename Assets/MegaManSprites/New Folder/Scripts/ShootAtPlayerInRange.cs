@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootAtPlayerInRange : MonoBehaviour {
+public class ShootAtPlayerInRange : MonoBehaviour
+{
 
     public float playerRange;
 
@@ -12,26 +13,56 @@ public class ShootAtPlayerInRange : MonoBehaviour {
 
     public Transform launchPoint;
 
+    public float waitBetweenShots;
 
-	// Use this for initialization
-	void Start () {
+    private float shotCounter;
+
+    private bool facingLeft;
+
+
+    // Use this for initialization
+    void Start()
+    {
         player = FindObjectOfType<PlayerControllerScripts_Update>();
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        Debug.DrawLine (new Vector3(transform.position.x - playerRange, transform.position.y, transform.position.z), new Vector3(transform.position.x + playerRange, transform.position.y, transform.position.z));
+        facingLeft = true;
+        shotCounter = waitBetweenShots;
 
-        if ((transform.localScale.x < 0) && (player.transform.position.x > transform.position.x) && (player.transform.position.x < transform.position.x + playerRange))
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Debug.DrawLine(new Vector3(transform.position.x - playerRange, transform.position.y, transform.position.z), new Vector3(transform.position.x + playerRange, transform.position.y, transform.position.z));
+
+        shotCounter -= Time.deltaTime;
+
+        if (player.transform.position.x > transform.position.x && player.transform.position.x < transform.position.x + playerRange)
         {
-            Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation);
+            if (facingLeft)
+                Flip();
+            if (shotCounter < 0)
+            {
+                Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation);
+                shotCounter = waitBetweenShots;
+            }
         }
 
-        if ((transform.localScale.x > 0) && (player.transform.position.x < transform.position.x) && (player.transform.position.x > transform.position.x - playerRange))
+        if (player.transform.position.x < transform.position.x && player.transform.position.x > transform.position.x - playerRange)
         {
-            Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation);
+            if (!facingLeft)
+                Flip();
+            if (shotCounter < 0)
+            {
+                Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation);
+                shotCounter = waitBetweenShots;
+            }
+            // transform.localScale.x > 0 &&  -- använd bara om enemy is moving???
         }
-
+    }
+    void Flip()
+    {
+        facingLeft = !facingLeft;
+        SpriteRenderer flippyX = GetComponent<SpriteRenderer>();
+        flippyX.flipX = !facingLeft;
     }
 }
