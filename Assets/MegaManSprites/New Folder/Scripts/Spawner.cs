@@ -5,21 +5,21 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject typeOfEnemy;
-    private bool hasSpawnedEnemy = false;
-    private void OnCollisionEnter2D(Collision2D collision)
+    public bool hasSpawnedEnemy = false;
+    public GameObject theEnemy;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("ENTER AREA");
-        if (!hasSpawnedEnemy && collision.gameObject.tag == "Player")
+        if (!hasSpawnedEnemy && collision.tag == "Player")
         {
-            GameObject hare = Instantiate(typeOfEnemy, (Vector2)transform.position, Quaternion.identity) as GameObject;
+            theEnemy = Instantiate(typeOfEnemy, (Vector2)transform.position, Quaternion.identity);
             hasSpawnedEnemy = true;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("EXIT AREA");
-        if (collision.gameObject.tag == "Player")
+        if (theEnemy == null && collision.tag == "Player")
         {
             hasSpawnedEnemy = false;
         }

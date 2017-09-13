@@ -34,10 +34,9 @@ public class EnemyShoot : MonoBehaviour
         Vector2 directionOfPlayer = player.transform.position - transform.position;
         myRigidbody2D.velocity = new Vector2(bulletSpeed, myRigidbody2D.velocity.y);
 
-        var distance = directionOfPlayer.magnitude;
-        Vector2 direction = directionOfPlayer / distance; // This is now the normalized direction.
+        //var distance = directionOfPlayer.magnitude;
+        //Vector2 direction = directionOfPlayer / distance; // This is now the normalized direction.
 
-        Debug.Log(directionOfPlayer.y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
