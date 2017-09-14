@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\BetterJump.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\BulletWithBullet.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\CameraFollowingPlayer.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\CharacterHealth.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\EnemyHealth.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\EnemyShoot.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\EnemyTakeDamage.cs" />
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\FlyerEnemyMove.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\KillPlayer.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\LadderZone.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\LevelManager.cs" />

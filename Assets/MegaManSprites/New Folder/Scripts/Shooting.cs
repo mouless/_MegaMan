@@ -50,7 +50,7 @@ public class Shooting : MonoBehaviour
 
     private void CheckForShot()
     {
-        if (true) // Check to make sure there are maximum 3 shots in the air at any given time
+        if (true) // Check to make sure there are a maximum of 3 shots in the air at any given time
         {
             if (Input.GetKeyDown(KeyCode.X))
             {

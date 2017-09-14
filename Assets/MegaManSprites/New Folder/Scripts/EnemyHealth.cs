@@ -15,15 +15,6 @@ public class EnemyHealth : MonoBehaviour
         currentEnemyHealth = maxEnemyHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            HurtEnemy(6.66f);
-        }
-    }
-
     public void HurtEnemy(float damageTaken)
     {
         currentEnemyHealth -= damageTaken;

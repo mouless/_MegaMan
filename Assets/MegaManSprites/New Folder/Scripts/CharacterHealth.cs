@@ -6,14 +6,19 @@ using UnityEngine.UI;
 
 public class CharacterHealth : MonoBehaviour
 {
-    public float currentHealth;
+    public static float currentHealth;
     public float maxHealth;
 
-    static public Slider healthbar;
+    private LevelManager levelManager;
+
+    public Slider healthbar;
 
     // Use this for initialization
     void Start()
     {
+        healthbar = GetComponent<Slider>();
+        levelManager = FindObjectOfType<LevelManager>();
+
         maxHealth = 100f;
         currentHealth = maxHealth;
         healthbar.value = currentHealth;
@@ -22,22 +27,24 @@ public class CharacterHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentHealth <= 0)
+        {
+            FullHealth();
+            levelManager.RespawnPlayer();
+        }
+
         if (Input.GetKeyDown(KeyCode.Z))
         {
             HurtPlayer(6.66f);
         }
-    }
-
-    public void HurtPlayer(float damageTaken)
-    {
-        currentHealth -= damageTaken;
-
-        if (currentHealth <= 0)
-        {
-            PlayerDeath();
-        }
 
         UpdateHealthBar();
+
+    }
+
+    public static void HurtPlayer(float damageTaken)
+    {
+        currentHealth -= damageTaken;
     }
 
     private void PlayerDeath()
@@ -49,5 +56,10 @@ public class CharacterHealth : MonoBehaviour
     private void UpdateHealthBar()
     {
         healthbar.value = currentHealth / 100;
+    }
+
+    public void FullHealth()
+    {
+        currentHealth = maxHealth;
     }
 }

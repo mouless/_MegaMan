@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class EnemyTakeDamage : MonoBehaviour
 {
-
     public bool isImmune;
+    public FlyerEnemyMove bat;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isImmune && (collision.gameObject.tag == "Bullet"))
+        if (bat != null)
+        {
+            isImmune = bat.iamImmune;
+        }
+        else
+        {
+            isImmune = false;
+        }
+
+        if (isImmune && collision.gameObject.tag == "Bullet")
         {
             collision.rigidbody.GetComponent<Rigidbody2D>().gravityScale = 1f;
         }
@@ -25,6 +34,10 @@ public class EnemyTakeDamage : MonoBehaviour
         {
             Destroy(collision.gameObject);
             gameObject.GetComponent<EnemyHealth>().HurtEnemy(6f);
+        }
+        else if (collision.gameObject.tag == "Enemies")
+        {
+            return;
         }
 
     }

@@ -6,12 +6,12 @@ public class LevelManager : MonoBehaviour
 {
     public GameObject currentCheckpoint;
 
-    private PlayerControllerScripts_Update player;
+    private Shooting player;
 
     // Use this for initialization
     void Start()
     {
-        player = FindObjectOfType<PlayerControllerScripts_Update>();
+        player = FindObjectOfType<Shooting>();
     }
 
     // Update is called once per frame

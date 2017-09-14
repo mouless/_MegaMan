@@ -10,7 +10,7 @@ public class PlayerControllerScripts_Update : MonoBehaviour
     public float groundRadius = 0.4f;
     public LayerMask whatIsGround;
 
-    public float jumpForce = 450f;
+    public float jumpForce = 1;
     Animator anim;
     Rigidbody2D myRigidbody;
 
@@ -75,5 +75,6 @@ public class PlayerControllerScripts_Update : MonoBehaviour
     void Jump()
     {
         myRigidbody.AddForce(new Vector2(0, jumpForce));
+        //myRigidbody.velocity = Vector2.up * jumpForce;
     }
 }

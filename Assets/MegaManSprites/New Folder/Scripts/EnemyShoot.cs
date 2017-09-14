@@ -31,7 +31,7 @@ public class EnemyShoot : MonoBehaviour
     void Update()
     {
         //Vector2 directionOfPlayer = player.transform.position - transform.position;
-        Vector2 directionOfPlayer = player.transform.position - transform.position;
+        //Vector2 directionOfPlayer = player.transform.position - transform.position;
         myRigidbody2D.velocity = new Vector2(bulletSpeed, myRigidbody2D.velocity.y);
 
         //var distance = directionOfPlayer.magnitude;
@@ -43,7 +43,7 @@ public class EnemyShoot : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            gameObject.GetComponent<CharacterHealth>().HurtPlayer(6f);
+            CharacterHealth.HurtPlayer(6f);
             Debug.Log("Taking DAMAGE!!!");
         }
     }
