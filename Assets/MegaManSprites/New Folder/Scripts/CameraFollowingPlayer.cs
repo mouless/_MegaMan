@@ -22,7 +22,9 @@ public class CameraFollowingPlayer : MonoBehaviour
     {
         if (player.position.x < -12.5)
         {
-
+            // Lägg till en kollision så man inte kan gå utanför skärmen
+            // Lägg till ljud som spelas när man skjuter/hoppar/title_menu osv...
+            // Fixa A4 som beskriver vad jag har tänkt att göra
         }
         else
         {
