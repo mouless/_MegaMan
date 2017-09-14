@@ -92,6 +92,7 @@
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\KillPlayer.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\LadderZone.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\MainMenu.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\Perishables.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\PlayerControllerScripts.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\PlayerControllerScripts_Update.cs" />
