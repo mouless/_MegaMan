@@ -10,5 +10,8 @@ public class MainMenu : MonoBehaviour {
         //Application.LoadLevel(startGame);
         SceneManager.LoadScene(startGame);
     }
-
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
