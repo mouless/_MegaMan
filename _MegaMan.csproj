@@ -78,6 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\IntroVideo.cs" />
+    <Compile Include="Assets\IntroVideoChange.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\BetterJump.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\BulletWithBullet.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\CameraFollowingPlayer.cs" />
