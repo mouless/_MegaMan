@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     Animator anim;
+    AudioSource shoot;
 
     public float fireRate = 0;
     public float damage = 1;
@@ -24,6 +25,7 @@ public class Shooting : MonoBehaviour
     {
         Body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        shoot = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -101,11 +103,13 @@ public class Shooting : MonoBehaviour
         {
             GameObject theBullet = Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
             theBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * transform.localScale.x, velocity.y);
+            shoot.Play();
         }
         else
         {
             GameObject theBullet = Instantiate(bullet, (Vector2)transform.position + offsetNeg * -transform.localScale.x, Quaternion.identity);
             theBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-velocity.x * transform.localScale.x, velocity.y);
+            shoot.Play();
         }
     }
 

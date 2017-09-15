@@ -5,17 +5,11 @@ using UnityEngine;
 public class FlyerEnemyMove : MonoBehaviour
 {
     private Animator anim;
-
     private PlayerControllerScripts_Update thePlayer;
-
     public float moveSpeed;
-
     public float playerRange;
-
     public LayerMask playerLayer;
-
     public bool playerInRange;
-
     public bool iamImmune = false;
 
     // Use this for initialization
@@ -30,6 +24,7 @@ public class FlyerEnemyMove : MonoBehaviour
     void Update()
     {
         playerInRange = Physics2D.OverlapCircle(transform.position, playerRange, playerLayer);
+
 
         if (playerInRange)
         {
@@ -48,6 +43,15 @@ public class FlyerEnemyMove : MonoBehaviour
         else
         {
             iamImmune = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            CharacterHealth.HurtPlayer(6f);
+            transform.position = Vector3.MoveTowards(transform.position, thePlayer.transform.position, -moveSpeed * Time.deltaTime);
         }
     }
 

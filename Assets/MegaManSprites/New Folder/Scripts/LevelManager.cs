@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public GameObject currentCheckpoint;
+    AudioSource playerDied;
 
     private Shooting player;
 
@@ -12,6 +13,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Shooting>();
+        playerDied = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Player RESPAWN!!");
         player.transform.position = currentCheckpoint.transform.position;
+        playerDied.Play();
     }
 
 

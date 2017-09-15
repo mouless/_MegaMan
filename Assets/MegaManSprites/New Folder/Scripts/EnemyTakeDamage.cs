@@ -6,6 +6,13 @@ public class EnemyTakeDamage : MonoBehaviour
 {
     public bool isImmune;
     public FlyerEnemyMove bat;
+    AudioSource takeDamageSound;
+
+    private void Start()
+    {
+        takeDamageSound = GetComponent<AudioSource>();
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -34,6 +41,8 @@ public class EnemyTakeDamage : MonoBehaviour
         {
             Destroy(collision.gameObject);
             gameObject.GetComponent<EnemyHealth>().HurtEnemy(6f);
+            takeDamageSound.Play();
+
         }
         else if (collision.gameObject.tag == "Enemies")
         {

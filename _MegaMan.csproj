@@ -91,6 +91,7 @@
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\EnemyShoot.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\EnemyTakeDamage.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\FlyerEnemyMove.cs" />
+    <Compile Include="Assets\MegaManSprites\New Folder\Scripts\JustDestroy.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\KillPlayer.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\LadderZone.cs" />
     <Compile Include="Assets\MegaManSprites\New Folder\Scripts\LevelManager.cs" />
